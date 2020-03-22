@@ -24,8 +24,7 @@ def tokenizer(text):
     emoticons = re.findall('(?::|;|=)(?:-)?(?:\)|\(|D|P)', text.lower())
     text = re.sub('[\W]+', ' ', text.lower()) + ' '.join(emoticons).replace('-', '')
     text = [w for w in text.split() if w not in stop]
-    tokenized = [porter.stem(w) for w in text]
-    return tokenized
+    return [porter.stem(w) for w in text]
 
 vect = HashingVectorizer(decode_error='ignore',
                          n_features=2**21,
